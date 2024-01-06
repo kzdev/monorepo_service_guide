@@ -1,0 +1,40 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.187.0/containers/typescript-node
+{
+  "name": "frontend",
+  "dockerComposeFile": "../../docker-compose.yml",
+  "service": "frontend",
+  // Set *default* container specific settings.json values on container create.
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "telemetry.enableTelemetry": false,
+        "redhat.telemetry.enabled": false,
+        "vulnCost.sendStatistics": false,
+        "editor.renderWhitespace": "all",
+        "editor.renderControlCharacters": true,
+        "editor.formatOnSave": true,
+        "files.insertFinalNewline": true,
+        "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-dark",
+        "workbench.colorTheme": "Default Dark Modern"
+      },
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "Orta.vscode-jest",
+        "GitHub.vscode-pull-request-github",
+        "isudox.vscode-jetbrains-keybindings",
+        "chadalen.vscode-jetbrains-icon-theme",
+        "GitHub.copilot-chat",
+        "GitHub.copilot"
+      ]
+    }
+  },
+  "workspaceFolder": "/workspace",
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "pnpm config set store-dir ~/.pnpm-store",
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "node"
+}

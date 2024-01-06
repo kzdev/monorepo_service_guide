@@ -1,0 +1,17 @@
+
+> @repo/ui@0.0.0 lint /workspace/frontend/packages/ui
+> eslint . --max-warnings 0
+
+
+Oops! Something went wrong! :(
+
+ESLint: 8.42.0
+
+ESLint couldn't find the config "@repo/eslint-config/react-internal.js" to extend from. Please check that the name of the config is correct.
+
+The config "@repo/eslint-config/react-internal.js" was referenced from the config file in "/workspace/frontend/packages/ui/.eslintrc.js".
+
+If you still have problems, please stop by https://eslint.org/chat/help to chat with the team.
+
+ ELIFECYCLE  Command failed with exit code 2.
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?

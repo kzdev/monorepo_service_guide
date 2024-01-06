@@ -1,0 +1,4 @@
+{
+    "teamid": "team_frontend",
+    "apiurl": "http://turborepo-cache:3000"
+}

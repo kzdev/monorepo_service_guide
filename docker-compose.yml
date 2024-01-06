@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend/Dockerfile
+      args:
+        - VARIANT=20
+    volumes:
+      - ./frontend:/workspace:cached
+    command: sleep infinity
+    networks:
+      - internal_network
+      - external_network
+
+  turborepo-cache:
+    image: ducktors/turborepo-remote-cache:2.0.8
+    #ports:
+    #- "6000:6000"
+    environment:
+      - TURBO_TOKEN=${TURBO_TOKEN}
+      - REDIS_URL=redis://redis:6379
+    restart: unless-stopped
+    networks:
+      - internal_network
+
+  redis:
+    image: redis:alpine
+    #ports:
+    #  - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - internal_network
+
+#volumes:
+
+networks:
+  internal_network:
+    internal: true
+  external_network:
