@@ -1,9 +1,9 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.187.0/containers/typescript-node
 {
-  "name": "frontend",
-  "dockerComposeFile": "../../docker-compose.yml",
-  "service": "frontend",
+  "name": "backend",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "backend",
   // Set *default* container specific settings.json values on container create.
   "customizations": {
     "vscode": {

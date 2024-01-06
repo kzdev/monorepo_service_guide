@@ -4,15 +4,18 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: docker/frontend/Dockerfile
+      dockerfile: frontend/Dockerfile
       args:
         - VARIANT=20
     volumes:
-      - ./frontend:/workspace:cached
+      - ../:/workspace:cached
     command: sleep infinity
     networks:
       - internal_network
       - external_network
+    depends_on:
+      - turborepo-cache
+      - redis
 
   turborepo-cache:
     image: ducktors/turborepo-remote-cache:2.0.8
