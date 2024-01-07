@@ -1,9 +1,15 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.187.0/containers/typescript-node
 {
   "name": "backend",
   "dockerComposeFile": "../docker-compose.yml",
   "service": "backend",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21.0.1",
+      "installMaven": "true",
+      "mavenVersion": "3.9.6",
+			"installGradle": "false"
+    }
+  },
   // Set *default* container specific settings.json values on container create.
   "customizations": {
     "vscode": {
@@ -16,15 +22,34 @@
         "editor.formatOnSave": true,
         "files.insertFinalNewline": true,
         "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-dark",
-        "workbench.colorTheme": "Default Dark Modern"
+        "workbench.colorTheme": "Default Dark Modern",
+        "git.untrackedChanges": "hidden",
+        "git.autoRepositoryDetection": "openEditors",
+        "git.autoTrustAllRepositories": true,
+        "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current", 
+        "java.format.settings.url": "/workspace/backend/eclipse-java-google-style.xml",
+        "java.format.settings.profile": "GoogleStyle",
+        "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn",
+        "maven.terminal.customEnv": [{
+          "environmentVariable": "JAVA_HOME",
+          "value": "/usr/local/sdkman/candidates/java/current"
+        }],
+        "java.compile.nullAnalysis.mode": "automatic",
+        "java.configuration.updateBuildConfiguration": "interactive",
+        "[java]": {
+          "editor.formatOnPaste": true,
+          "editor.formatOnSave": true,
+          "editor.formatOnType": true
+        }
       },
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
-        "esbenp.prettier-vscode",
-        "Orta.vscode-jest",
+        "MS-CEINTL.vscode-language-pack-ja",
         "GitHub.vscode-pull-request-github",
         "isudox.vscode-jetbrains-keybindings",
         "chadalen.vscode-jetbrains-icon-theme",
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-boot-dev-pack",
         "GitHub.copilot-chat",
         "GitHub.copilot"
       ]
@@ -32,9 +57,9 @@
   },
   "workspaceFolder": "/workspace",
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [],
+  "forwardPorts": []
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "pnpm config set store-dir ~/.pnpm-store",
+  //"postCreateCommand": "pnpm config set store-dir ~/.pnpm-store",
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "node"
+  //"remoteUser": "vscode"
 }

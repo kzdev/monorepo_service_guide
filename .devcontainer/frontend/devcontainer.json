@@ -26,11 +26,13 @@
       },
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
+        "MS-CEINTL.vscode-language-pack-ja",
         "esbenp.prettier-vscode",
         "Orta.vscode-jest",
         "GitHub.vscode-pull-request-github",
         "isudox.vscode-jetbrains-keybindings",
         "chadalen.vscode-jetbrains-icon-theme",
+        "42Crunch.vscode-openapi",
         "GitHub.copilot-chat",
         "GitHub.copilot"
       ]

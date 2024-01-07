@@ -1,6 +1,19 @@
 version: "3.8"
 
 services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    volumes:
+      - ../:/workspace:cached
+    command: sleep infinity
+    depends_on:
+      - db
+    networks:
+      - internal_network
+      - external_network
+
   frontend:
     build:
       context: .
@@ -16,6 +29,19 @@ services:
     depends_on:
       - turborepo-cache
       - redis
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: imf
+      POSTGRES_USER: imf
+      POSTGRES_PASSWORD: imf
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - internal_network
 
   turborepo-cache:
     image: ducktors/turborepo-remote-cache:2.0.8
@@ -36,7 +62,8 @@ services:
     networks:
       - internal_network
 
-#volumes:
+volumes:
+  postgres_data:
 
 networks:
   internal_network:
