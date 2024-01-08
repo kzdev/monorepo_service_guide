@@ -2,7 +2,7 @@
   "name": "backend",
   "dockerComposeFile": "../docker-compose.yml",
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
   ],
   "service": "backend",
   "features": {
@@ -10,7 +10,7 @@
       "version": "21.0.1",
       "installMaven": "true",
       "mavenVersion": "3.9.6",
-			"installGradle": "false"
+      "installGradle": "false"
     },
     "ghcr.io/devcontainers/features/node:1": {
       "version": "20"
@@ -39,14 +39,16 @@
         "sonarlint.showProjectStartNotification": false,
         // Maven
         "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn",
-        "maven.terminal.customEnv": [{
-          "environmentVariable": "JAVA_HOME",
-          "value": "/usr/local/sdkman/candidates/java/current"
-        }],
+        "maven.terminal.customEnv": [
+          {
+            "environmentVariable": "JAVA_HOME",
+            "value": "/usr/local/sdkman/candidates/java/current"
+          }
+        ],
         // Java
         "java.compile.nullAnalysis.mode": "automatic",
         "java.configuration.updateBuildConfiguration": "interactive",
-        "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current", 
+        "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current",
         "java.format.settings.url": "/workspace/backend/eclipse-java-google-style.xml",
         "java.format.settings.profile": "GoogleStyle",
         "[java]": {
