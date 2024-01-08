@@ -1,6 +1,9 @@
 {
   "name": "backend",
   "dockerComposeFile": "../docker-compose.yml",
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+  ],
   "service": "backend",
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
@@ -8,12 +11,16 @@
       "installMaven": "true",
       "mavenVersion": "3.9.6",
 			"installGradle": "false"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
     }
   },
   // Set *default* container specific settings.json values on container create.
   "customizations": {
     "vscode": {
       "settings": {
+        // VSCode
         "telemetry.enableTelemetry": false,
         "redhat.telemetry.enabled": false,
         "vulnCost.sendStatistics": false,
@@ -23,24 +30,35 @@
         "files.insertFinalNewline": true,
         "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-dark",
         "workbench.colorTheme": "Default Dark Modern",
+        "workbench.startupEditor": "readme", // 起動時にreadmeを開く
+        // GitHub
         "git.untrackedChanges": "hidden",
         "git.autoRepositoryDetection": "openEditors",
         "git.autoTrustAllRepositories": true,
-        "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current", 
-        "java.format.settings.url": "/workspace/backend/eclipse-java-google-style.xml",
-        "java.format.settings.profile": "GoogleStyle",
+        // SonarLint
+        "sonarlint.showProjectStartNotification": false,
+        // Maven
         "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn",
         "maven.terminal.customEnv": [{
           "environmentVariable": "JAVA_HOME",
           "value": "/usr/local/sdkman/candidates/java/current"
         }],
+        // Java
         "java.compile.nullAnalysis.mode": "automatic",
         "java.configuration.updateBuildConfiguration": "interactive",
+        "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current", 
+        "java.format.settings.url": "/workspace/backend/eclipse-java-google-style.xml",
+        "java.format.settings.profile": "GoogleStyle",
         "[java]": {
           "editor.formatOnPaste": true,
           "editor.formatOnSave": true,
           "editor.formatOnType": true
-        }
+        },
+        // XML
+        "xml.format.splitAttributes": true,
+        "xml.format.joinCDATALines": true,
+        "versionlens.suggestions.showOnStartup": true, // 拡張機能： Version Lens
+        "files.defaultLanguage": "plaintext"
       },
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
@@ -50,8 +68,14 @@
         "chadalen.vscode-jetbrains-icon-theme",
         "vscjava.vscode-java-pack",
         "vmware.vscode-boot-dev-pack",
+        "SonarSource.sonarlint-vscode",
         "GitHub.copilot-chat",
-        "GitHub.copilot"
+        "redhat.vscode-xml",
+        "GitHub.copilot",
+        "hediet.vscode-drawio",
+        "george-alisson.html-preview-vscode",
+        "42Crunch.vscode-openapi",
+        "pflannery.vscode-versionlens"
       ]
     }
   },

@@ -11,6 +11,7 @@
   "customizations": {
     "vscode": {
       "settings": {
+        // VSCode
         "telemetry.enableTelemetry": false,
         "redhat.telemetry.enabled": false,
         "vulnCost.sendStatistics": false,
@@ -20,21 +21,39 @@
         "files.insertFinalNewline": true,
         "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-dark",
         "workbench.colorTheme": "Default Dark Modern",
+        "workbench.startupEditor": "readme", // 起動時にreadmeを開く
+        // GitHub
         "git.untrackedChanges": "hidden",
         "git.autoRepositoryDetection": "openEditors",
-        "git.autoTrustAllRepositories": true
+        "git.autoTrustAllRepositories": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        },
+        // sonarlint
+        "sonarlint.showProjectStartNotification": false,
+        // lint
+        "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+        "prettier.disableLanguages": ["js", "jsx", "ts", "tsx"],
+        "versionlens.suggestions.showOnStartup": true, // 拡張機能： Version Lens
+        "files.defaultLanguage": "plaintext"
       },
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
         "MS-CEINTL.vscode-language-pack-ja",
         "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
         "Orta.vscode-jest",
         "GitHub.vscode-pull-request-github",
         "isudox.vscode-jetbrains-keybindings",
         "chadalen.vscode-jetbrains-icon-theme",
         "42Crunch.vscode-openapi",
+        "SonarSource.sonarlint-vscode",
         "GitHub.copilot-chat",
-        "GitHub.copilot"
+        "GitHub.copilot",
+        "hediet.vscode-drawio",
+        "george-alisson.html-preview-vscode",
+        "42Crunch.vscode-openapi",
+        "pflannery.vscode-versionlens"
       ]
     }
   },
