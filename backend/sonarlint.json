@@ -1,0 +1,7 @@
+{
+    "analyzers": {
+        "java": {
+            "enabled": true
+        }
+    }
+}

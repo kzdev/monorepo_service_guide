@@ -1,0 +1,202 @@
+openapi: 3.0.3
+info:
+  title: 顧客管理API
+  description: 顧客情報管理APIサーバの仕様書
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api/v1
+    description: 開発サーバ
+paths:
+  /customer:
+    parameters:
+      - schema:
+          type: string
+        in: header
+        name: Authorization
+        description: 認証トークン
+        required: true
+    get:
+      operationId: getCustomer
+      summary: 顧客情報の取得
+      description: 登録された顧客情報を取得します。
+      tags:
+        - Customer
+      responses:
+        '200':
+          description: |-
+            正常ルート
+            顧客情報のリストを取得します。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '401':
+          description: 認証失敗
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: サーバの内部エラー
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: postCustomer
+      summary: 顧客情報の単数登録
+      description: 顧客情報を1件登録します。
+      tags:
+        - Customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: |-
+            正常ルート
+            顧客情報の登録が成功した場合。
+            レスポンスには登録情報が含まれます
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '401':
+          description: 認証失敗
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: 内部エラー
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /customer/{id}:
+    parameters:
+      - schema:
+          type: integer
+          format: int32
+        name: id
+        in: path
+        required: true
+        description: 識別ID
+      - schema:
+          type: string
+        in: header
+        name: Authorization
+        description: 認証トークン
+        required: true
+    patch:
+      operationId: patchCustomer
+      summary: 顧客情報の単数更新
+      description: 顧客情報を1件更新します。
+      tags:
+        - Customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: |-
+            正常ルート
+            顧客情報の登録が成功した場合。
+            レスポンスには登録情報が含まれます
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '401':
+          description: 認証失敗
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: 更新対象が存在しない
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'        
+        '500':
+          description: 内部エラー
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteCustomer
+      summary: 顧客情報の単数削除
+      description: 顧客情報を1件削除します。
+      tags:
+        - Customer
+      responses:
+        '200':
+          description: |-
+            正常ルート
+            顧客情報の登録が成功した場合。
+            レスポンスには登録情報が含まれます
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '401':
+          description: 認証失敗
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: 削除対象が存在しない
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'        
+        '500':
+          description: 内部エラー
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Customer:
+      title: 顧客情報
+      description: 顧客情報オブジェクト
+      type: object
+      required:
+        - name
+        - mailAddress
+      properties:
+        id:
+          description: 顧客識別ID
+          type: integer
+          format: int32
+        name:
+          description: 顧客名
+          type: string
+        age:
+          description: 年齢
+          type: integer
+          format: int32
+        mailAddress:
+          description: メールアドレス
+          type: string
+        job:
+          description: 職業
+          type: string
+    ErrorResponse:
+      title: エラーレスポンス
+      type: object
+      properties:
+        code:
+          description: エラーコード
+          type: string
+        message:
+          description: エラーメッセージ
+          type: string

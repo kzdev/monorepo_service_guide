@@ -1,0 +1,7 @@
+{
+    "analyzers": {
+        "typescript": {
+            "enabled": true
+        }
+    }
+}

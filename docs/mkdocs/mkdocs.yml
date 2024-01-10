@@ -1,0 +1,32 @@
+site_name: MkDocs
+theme:
+  name: material
+  language: ja
+    #logo: images/kabutomushi.jpg
+  palette:
+    primary: black
+copyright: 2024, infomart, Inc. All rights reserved.
+
+plugins:
+  - drawio-exporter:
+      cache_dir: 'drawio-exporter'
+      drawio_executable: null
+      drawio_args: []
+      format: svg
+      embed_format: '{img_open}{img_src}{img_close}'
+      sources: '*.drawio'
+  - search:
+      lang: ja
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - pymdownx.highlight:
+      use_pygments: true
+      pygments_style: colorful
+      linenums: false
+  - pymdownx.superfences
+  - pymdownx.details
+
+extra_css:
+  - "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
